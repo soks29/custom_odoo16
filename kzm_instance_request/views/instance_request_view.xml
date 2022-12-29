@@ -1,0 +1,102 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="kzm_instance_request_list_view">
+      <field name="name">kzm_instance_request list</field>
+      <field name="model">kzm.instance.request</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="create_uid"/>
+          <field name = "name"/>
+          <field name = "limit_date"/>
+          <field name = "cpu"/>
+          <field name = "ram"/>
+          <field name = "disk"/>
+          <field name = "state"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="kzm_instance_request_form_view">
+      <field name="name">kzm_instance_request list</field>
+      <field name="model">kzm.instance.request</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+              <button string="Draft copy" type="object" attrs="{'visible':['|',('state','=','state2'),('state','=','state4')]}" name="action_draft" class="btn-primary" />
+              <button string="Submissive" type="object" attrs="{'visible':['|',('state','=','state1'),('state','!=','state2')]}" name="action_submissive" class="btn-primary" />
+              <button string="Processing" type="object" attrs="{'visible':['|',('state','=','state2'),('state','!=','state3')]}" name="action_processing" class="btn-primary" />
+              <button string="Treated" type="object" attrs="{'invisible':['|',('state','=','state3'),('state','!=','state4')]}" name="action_treated" class="btn-primary" />
+              <field name="state" widget="statusbar"/>
+          </header>
+          <sheet>
+            <group colspan="2" col="2">
+              <group colspan="1" col="1">
+                <field name="name"/>
+                <field name="adress_ip" readonly="1"/>
+              </group>
+              <group colspan="1" col="2">
+                  <field name="cpu"/>
+                  <field name="ram"/>
+                <field name="disk"/>
+              </group>
+              <group colspan="1" col="2">
+                  <field name="url"/>
+                  <field name = "state"/>
+              </group>
+              <group colspan="1" col="2">
+                  <field name ="limit_date"/>
+                  <field name ="treat_date"/>
+                  <field name ="treat_duration"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+<!--    <record model="ir.actions.act_windows" id="kzm_instance_request_action_window">-->
+<!--      <field name="name">kzm_instance_request window</field>-->
+<!--      <field name="res_model">instance.request</field>-->
+<!--      <field name="view_model">tree, form</field>-->
+<!--     </record>-->
+    <record id="kzm_instance_request_action_window" model="ir.actions.act_window">
+      <field name="name">Demande d’instance</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">kzm.instance.request</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+<!--    &lt;!&ndash; Top menu item &ndash;&gt;-->
+
+<!--    <menuitem name="kzm_instance_request" id="menu_root"/>-->
+
+<!--    &lt;!&ndash; menu categories &ndash;&gt;-->
+
+<!--    <menuitem name="Menu 1" id="kzm_instance_request_menu_1" parent="menu_root"/>-->
+<!--    &lt;!&ndash;-->
+<!--    <menuitem name="Menu 2" id="kzm_instance_request.menu_2" parent="kzm_instance_request.menu_root"/>-->
+
+<!--    &ndash;&gt;-->
+<!--    &lt;!&ndash; actions &ndash;&gt;-->
+
+<!--    <menuitem name="List" id="kzm_instance_request_list" parent="kzm_instance_request_menu_1"-->
+<!--              action="kzm_instance_request_action_window"/>-->
+<!--    &lt;!&ndash;-->
+<!--    <menuitem name="Server to list" id="kzm_instance_request" parent="kzm_instance_request.menu_2"-->
+<!--              action="kzm_instance_request.action_server"/>-->
+-->
+    <menuitem id="test_menu_root" name="Instance" web_icon="kzm_instance_request, static/description/odoo_logo.png">
+      <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes"/>
+    </menuitem>
+    <menuitem id="model1_menu1_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Odoo Version"/>
+    <menuitem id="model1_menu2_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Responsables"/>
+    <menuitem id="model1_menu3_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Analyse"/>
+    <menuitem id="model1_menu4_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Configuration"/>
+  </data>
+</odoo>
