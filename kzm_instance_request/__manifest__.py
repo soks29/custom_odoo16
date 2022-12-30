@@ -24,6 +24,7 @@
 
     # always loaded
     'data': [
+        'data/activity.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/instance_data.xml',
@@ -32,9 +33,9 @@
         'views/instance_request_view.xml',
     ],
     # only loaded in demonstration mode
-    'demo':[
-        'demo/demo.xml',
-    ],
+    # 'demo':[
+    #     'demo/demo.xml',
+    # ],
     'application': 'True',
     'sequence': -100,
 }
