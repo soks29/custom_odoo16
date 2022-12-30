@@ -1,10 +1,12 @@
 from odoo import fields, models
+from datetime import timedelta, date
+
 
 class Instance_Request(models.Model):
     _name = "kzm.instance.request"
     _description = "creation d'instance"
 
-    name = fields.Char("Designation", required=True)
+    name = fields.Char("Designation")
     active = fields.Boolean(default=True)
     adress_ip = fields.Char("Adress IP")
     cpu = fields.Char()
@@ -14,7 +16,7 @@ class Instance_Request(models.Model):
     state = fields.Selection(
         selection=[('state1','Brouillon'),('state2','Soumise'),('state3','En traitement'),('state4','Traitée')],
         default='state1')
-    limit_date = fields.Date(required=True)
+    limit_date = fields.Date()
     treat_date = fields.Datetime()
     treat_duration = fields.Float()
 
@@ -29,3 +31,17 @@ class Instance_Request(models.Model):
 
     def action_treated(self):
         self.state = "state4"
+
+    def action_confirm(self):
+        self.state = "state4"
+
+    def action_scheduled(self):
+        day = self.env['kzm.instance.request'].search([('limit_date', '<=', date.today() + timedelta(days=5))])
+        for x in day:
+            x.state = 'state2'
+
+        # tmp1 = self.treat_date
+        # tmp2 = self.limit_date(datetime)
+        # days = tmp1 - tmp2
+        # if days >= 5:
+        #     self.state = "state2"

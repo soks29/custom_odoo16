@@ -34,6 +34,7 @@
     <!--      <field name="res_model">instance.request</field>-->
     <!--      <field name="view_model">tree, form</field>-->
     <!--     </record>-->
+
     <record id="kzm_odoo_instance_window" model="ir.actions.act_window">
       <field name="name">Odoo version</field>
       <field name="type">ir.actions.act_window</field>
@@ -60,7 +61,6 @@
 <!--    &lt;!&ndash;-->
 <!--    <menuitem name="Server to list" id="kzm_instance_request" parent="kzm_instance_request.menu_2"-->
 <!--              action="kzm_instance_request.action_server"/>-->
--->
 <!--    <menuitem id="test1_menu_root" name="odoo_version">-->
 <!--    <menuitem id="test_model_menu_action" action="test_model_action" name="Menu2"/>-->
 

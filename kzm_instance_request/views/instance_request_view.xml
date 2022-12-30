@@ -1,5 +1,24 @@
 <odoo>
   <data>
+      <!-- explicit action server -->
+      <record id="action_valide" model="ir.actions.server">
+          <field name="name">Valider</field>
+          <field name="type">ir.actions.server</field>
+          <field name="model_id" ref="model_kzm_instance_request"/>
+          <field name="binding_model_id" ref="model_kzm_instance_request" />
+          <field name="state">code</field>
+          <field name="code">records.action_confirm()</field>
+      </record>
+
+      <!-- explicit action server -->
+      <record id="action_planifier" model="ir.actions.server">
+          <field name="name">Planifier</field>
+          <field name="type">ir.actions.server</field>
+          <field name="model_id" ref="model_kzm_instance_request"/>
+          <field name="binding_model_id" ref="model_kzm_instance_request" />
+          <field name="state">code</field>
+          <field name="code">records.action_scheduled()</field>
+      </record>
     <!-- explicit list view definition -->
 
     <record model="ir.ui.view" id="kzm_instance_request_list_view">
@@ -9,11 +28,14 @@
         <tree>
           <field name="create_uid"/>
           <field name = "name"/>
-          <field name = "limit_date"/>
+          <field name = "treat_date"/>
           <field name = "cpu"/>
           <field name = "ram"/>
           <field name = "disk"/>
-          <field name = "state"/>
+          <field name="state"
+                 decoration-success="state == 'state4' or state == 'state3'"
+                 decoration-info="state == 'state1' or state == 'state3'" widget="badge"
+                 optional="show" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
         </tree>
       </field>
     </record>
@@ -25,31 +47,32 @@
       <field name="arch" type="xml">
         <form>
           <header>
-              <button string="Draft copy" type="object" attrs="{'visible':['|',('state','=','state2'),('state','=','state4')]}" name="action_draft" class="btn-primary" />
-              <button string="Submissive" type="object" attrs="{'visible':['|',('state','=','state1'),('state','!=','state2')]}" name="action_submissive" class="btn-primary" />
-              <button string="Processing" type="object" attrs="{'visible':['|',('state','=','state2'),('state','!=','state3')]}" name="action_processing" class="btn-primary" />
-              <button string="Treated" type="object" attrs="{'invisible':['|',('state','=','state3'),('state','!=','state4')]}" name="action_treated" class="btn-primary" />
+              <button name="action_draft" string="Draft copy"  type="object" attrs="{'invisible':['|',('state','=','state1'),('state','=','state3')]}" class="oe_highlight" />
+              <button name="action_submissive" string="Submissing"  type="object" attrs="{'invisible':[('state','!=','state1')]}" class="oe_highlight"   />
+              <button name="action_processing" string="Processing" type="object" attrs="{'invisible':[('state','!=','stage2')]}" class="oe_highlight"  />
+              <button name="action_treated" string="Treated" type="object" attrs="{'invisible':[('state','!=','stage3')]}" class="oe_highlight" />
               <field name="state" widget="statusbar"/>
           </header>
+
           <sheet>
             <group colspan="2" col="2">
               <group colspan="1" col="1">
-                <field name="name"/>
-                <field name="adress_ip" readonly="1"/>
+                <field name="name" required="True" attrs="{'readonly':[('state', '=', 'stage4')]}"/>
+                <field name="adress_ip" attrs="{'invisible':[('state','!=','state4')], 'readonly':[('state', '=', 'state4')]}" />
               </group>
               <group colspan="1" col="2">
-                  <field name="cpu"/>
-                  <field name="ram"/>
-                <field name="disk"/>
+                  <field name="cpu" attrs="{'readonly':[('state', '=', 'state4')]}"/>
+                  <field name="ram" attrs="{'readonly':[('state', '=', 'stage4')]}" />
+                <field name="disk" attrs="{'readonly':[('state', '=', 'stage4')]}"/>
               </group>
               <group colspan="1" col="2">
-                  <field name="url"/>
-                  <field name = "state"/>
+                  <field name="url" attrs="{'readonly':[('state', '=', 'state4')]}"/>
+                  <field name = "state" attrs="{'readonly':[('state', '=', 'stage4')]}"/>
               </group>
               <group colspan="1" col="2">
-                  <field name ="limit_date"/>
-                  <field name ="treat_date"/>
-                  <field name ="treat_duration"/>
+                  <field name ="treat_date" attrs="{'readonly':[('state', '=', 'state4')]}"/>
+                  <field name ="limit_date" required="true" attrs="{'readonly':[('state', '=', 'state4')]}"/>
+                  <field name ="treat_duration" attrs="{'readonly':[('state', '=', 'state4')]}"/>
               </group>
             </group>
           </sheet>
@@ -64,13 +87,34 @@
 <!--      <field name="res_model">instance.request</field>-->
 <!--      <field name="view_model">tree, form</field>-->
 <!--     </record>-->
-    <record id="kzm_instance_request_action_window" model="ir.actions.act_window">
-      <field name="name">Demande d’instance</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">kzm.instance.request</field>
-      <field name="view_mode">tree,form</field>
-    </record>
 
+
+      <record id="kzm_instance_request_window" model="ir.actions.act_window">
+          <field name="name">Demande d’instance</field>
+          <field name="res_model">kzm.instance.request</field>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">['|',('state','=','stage2'),('state','=','stage3')]</field>
+          <field name="help" type="html">
+               <p class="o_view_nocontent_smiling_face">
+                 Create your first instance
+               </p>
+          </field>
+
+      </record>
+
+
+
+      <record id="kzm_instance_request_action_window" model="ir.actions.act_window">
+          <field name="name">Demande d’instance</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">kzm.instance.request</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+               <p class="o_view_nocontent_smiling_face">
+                 Create your first instance
+               </p>
+          </field>
+      </record>
 
 <!--    &lt;!&ndash; Top menu item &ndash;&gt;-->
 
@@ -90,13 +134,20 @@
 <!--    &lt;!&ndash;-->
 <!--    <menuitem name="Server to list" id="kzm_instance_request" parent="kzm_instance_request.menu_2"-->
 <!--              action="kzm_instance_request.action_server"/>-->
--->
+
     <menuitem id="test_menu_root" name="Instance" web_icon="kzm_instance_request, static/description/odoo_logo.png">
       <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes"/>
     </menuitem>
+
     <menuitem id="model1_menu1_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Odoo Version"/>
-    <menuitem id="model1_menu2_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Responsables"/>
+
+    <menuitem id="model1_menu2_action"  parent="test_menu_root" name="Responsables">
+        <menuitem id="model_odo" action="kzm_instance_request.kzm_instance_request_window" name="À valider" sequence="10"/>
+        <menuitem id = "model2_odoo" action="kzm_instance_request.kzm_instance_request_action_window" name="Toutes"/>
+    </menuitem>
+
     <menuitem id="model1_menu3_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Analyse"/>
     <menuitem id="model1_menu4_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Configuration"/>
+
   </data>
 </odoo>
