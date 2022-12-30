@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
   <data>
       <record id="kzm_instance_view_search" model="ir.ui.view">
@@ -13,6 +14,7 @@
               </search>
           </field>
       </record>
+
       <!-- explicit action server -->
       <record id="action_valide" model="ir.actions.server">
           <field name="name">Valider</field>
@@ -26,15 +28,16 @@
       <!-- explicit action server -->
 
       <record id="submitted_cron" model="ir.cron">
-            <field name="name">Planifier</field>
-            <field name="model_id" ref="model_kzm_instance_request"/>
-            <field name="interval_number">1</field>
-            <field name="interval_type">minutes</field>
-            <field name="type">ir.actions.server</field>
-            <field name="numbercall">-1</field>
-            <field name="code">model.action_scheduled()</field>
-            <field name="state">code</field>
-            <field name="active" eval="True"></field>
+
+          <field name="name">Planifier</field>
+          <field name="model_id" ref="model_kzm_instance_request"/>
+          <field name="interval_number">1</field>
+          <field name="interval_type">minutes</field>
+          <field name="type">ir.actions.server</field>
+          <field name="numbercall">-1</field>
+          <field name="code">model.action_scheduled()</field>
+          <field name="state">code</field>
+          <field name="active" eval="True"></field>
         </record>
     <!-- explicit list view definition -->
 
@@ -159,18 +162,18 @@
 <!--              action="kzm_instance_request.action_server"/>-->
 
     <menuitem id="test_menu_root" name="Instance" web_icon="kzm_instance_request, static/description/odoo_logo.png">
-      <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes"/>
+      <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes" groups="kzm_instance_request.group_kzm_instance_request_user"/>
     </menuitem>
 
     <menuitem id="model1_menu1_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Odoo Version"/>
 
     <menuitem id="model1_menu2_action"  parent="test_menu_root" name="Responsables">
         <menuitem id="model_odo" action="kzm_instance_request.kzm_instance_request_window" name="À valider" sequence="10" groups="kzm_instance_request.group_kzm_instance_request_responsible"/>
-        <menuitem id = "model2_odoo" action="kzm_instance_request.kzm_instance_request_action_window" name="Toutes"/>
+        <menuitem id = "model2_odoo" action="kzm_instance_request.kzm_instance_request_action_window" name="Toutes" groups="kzm_instance_request.group_kzm_instance_request_responsible"/>
     </menuitem>
 
-    <menuitem id="model1_menu3_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Analyse"/>
-    <menuitem id="model1_menu4_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Configuration"/>
+    <menuitem id="model1_menu3_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Analyse" groups="kzm_instance_request.group_kzm_instance_request_user"/>
+    <menuitem id="model1_menu4_action" action="kzm_instance_request.kzm_odoo_instance_window" parent="test_menu_root" name="Configuration" groups="kzm_instance_request.group_kzm_instance_request_admin"/>
 
   </data>
 </odoo>

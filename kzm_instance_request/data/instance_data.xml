@@ -8,7 +8,7 @@
             <field name="ram">16</field>
             <field name="disk">60</field>
             <field name="url">test-ooo1</field>
-
+            <field name="state">Soumise</field>
             <field name="limit_date">2022-12-31</field>
             <field name="treat_date">2023-10-12 11:07:26</field>
             <field name="treat_duration">4.00</field>
@@ -20,7 +20,7 @@
             <field name="ram">8</field>
             <field name="disk">256</field>
             <field name="url">test-test-oop</field>
-
+            <field name="state">Traitee</field>
             <field name="limit_date">2022-12-30</field>
             <field name="treat_date">2023-10-30 11:07:26</field>
             <field name="treat_duration">3.00</field>
