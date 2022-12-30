@@ -20,12 +20,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','mail'],
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
         'security/security.xml',
+        'security/ir.model.access.csv',
+        'data/instance_data.xml',
         'data/odoo_version_data.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',

@@ -4,41 +4,40 @@ from datetime import timedelta, date
 
 class Instance_Request(models.Model):
     _name = "kzm.instance.request"
+    _inherit = "mail.thread"
     _description = "creation d'instance"
 
-    name = fields.Char("Designation")
+    name = fields.Char(string="Designation")
     active = fields.Boolean(default=True)
-    adress_ip = fields.Char("Adress IP")
-    cpu = fields.Char()
-    ram = fields.Char()
-    disk = fields.Char()
-    url = fields.Char()
+    adress_ip = fields.Char(string="Adress IP")
+    cpu = fields.Char(string="")
+    ram = fields.Char(string="")
+    disk = fields.Char(string="")
+    url = fields.Char(string="")
     state = fields.Selection(
-        selection=[('state1','Brouillon'),('state2','Soumise'),('state3','En traitement'),('state4','Traitée')],
-        default='state1')
+        selection=[('brouillon','Brouillon'),('soumise','Soumise'),('entraitement','En traitement'),('traite','Traitée')],
+        default='brouillon')
     limit_date = fields.Date()
     treat_date = fields.Datetime()
     treat_duration = fields.Float()
 
     def action_draft(self):
-        self.state = "state1"
+        self.state = "brouillon"
 
     def action_submissive(self):
-        self.state = "state2"
+        self.state = "soumise"
 
     def action_processing(self):
-        self.state = "state3"
+        self.state = "entraitement"
 
     def action_treated(self):
-        self.state = "state4"
+        self.state = "traite"
 
-    def action_confirm(self):
-        self.state = "state4"
 
     def action_scheduled(self):
         day = self.env['kzm.instance.request'].search([('limit_date', '<=', date.today() + timedelta(days=5))])
         for x in day:
-            x.state = 'state2'
+            x.state = 'soumise'
 
         # tmp1 = self.treat_date
         # tmp2 = self.limit_date(datetime)
