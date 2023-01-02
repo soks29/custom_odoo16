@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api, _
 from datetime import timedelta, date
 
 
@@ -8,6 +8,9 @@ class Instance_Request(models.Model):
     _description = "creation d'instance"
 
     name = fields.Char(string="Designation", tracking=True)
+    reference = fields.Char(string="Order Reference",
+                            required=True, copy=False,
+                            default=lambda self: _('New'))
     active = fields.Boolean(default=True)
     adress_ip = fields.Char(string="Adresse IP")
     cpu = fields.Char(string="CPU")
@@ -43,3 +46,10 @@ class Instance_Request(models.Model):
         day = self.env['kzm.instance.request'].search([('limit_date', '<=', date.today() + timedelta(days=5))])
         for x in day:
             x.action_submissive()
+
+    @api.model
+    def create(self, vals):
+        if vals.get('reference', _('New')) == _('New'):
+            vals['reference'] = self.env['ir.sequence'].next_by_code('instance.reconcile') or _('New')
+        res = super(Instance_Request, self).create(vals)
+        return res

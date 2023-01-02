@@ -2,12 +2,12 @@
 <odoo>
     <data noupdate="0">
 
-        <record id="mail_template_data" model="mail.template">
-            <field name="name">Instance creation template</field>
+        <record id="mail_template_data1" model="mail.template">
+            <field name="name">Instance created template</field>
             <field name="model_id" ref="kzm_instance_request.model_kzm_instance_request"/>
-            <field name="subject">Instance creation</field>
-            <field name="email_from">{{ (user.email) }}</field>
-            <field name="email_to">{{ (user.email) }}</field>
+            <field name="subject">Instance created</field>
+            <field name="email_from">s.jesus@karizma.ma</field>
+            <field name="email_to">sokambyj@gmail.com</field>
             <!--<field name="description">Invitation email to contacts to create a user account</field>-->
             <field name="body_html" type="html">
                 <table border="0" cellpadding="0" cellspacing="0"
@@ -26,7 +26,7 @@
                                                     <td valign="middle">
                                                         <br/>
                                                         <span style="font-size: 20px; font-weight: bold;"
-                                                              t-out="object.name">Création d’instance
+                                                              t-out="object.name">Instance créee
                                                         </span>
                                                     </td>
                                                     <td valign="middle" align="right">
@@ -52,27 +52,9 @@
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <div>
-                                                            Bonjour, Veuillez bien créer une instance <t t-out="object.name"></t> avec comme performances :
-                                                            <br/>
-                                                            <br/>
-                                                            <table>
-                                                                <thead>
-                                                                    <td>CPU</td>
-                                                                    <td>RAM</td>
-                                                                    <td>DISK</td>
-                                                                </thead>
-                                                                <tr>
-                                                                    <td>
-                                                                        <t t-out="object.cpu"></t>
-                                                                    </td>
-                                                                    <td>
-                                                                        <t t-out="object.ram"></t>
-                                                                    </td>
-                                                                    <td>
-                                                                        <t t-out="object.disk"></t>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
+                                                            Bonjour, <br/>
+                                                            Votre instance <t t-out="object.name"></t> a bien été crée.
+                                                            Elle est accessible sur le lien <t t-out="object.adress_ip"></t>
                                                             <br/>
                                                             <br/>
                                                             Cordialement

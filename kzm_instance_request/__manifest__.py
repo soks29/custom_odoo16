@@ -20,16 +20,18 @@
     'version': '16.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail', 'portal'],
+    'depends': ['base', 'mail', 'contacts', 'sale_management'],
 
     # always loaded
     'data': [
-        'data/activity.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/instance_data.xml',
+        'data/seq_data.xml',
+        'data/activity.xml',
         'data/odoo_version_data.xml',
-        #'date/mail_template_data.xml',
+        'data/mail_template_data.xml',
+        'data/mail_template_data1.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',
     ],
