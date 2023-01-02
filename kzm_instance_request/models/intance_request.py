@@ -1,5 +1,5 @@
 from odoo import fields, models, api, _
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 from odoo.exceptions import ValidationError
 
 
@@ -25,7 +25,6 @@ class Instance_Request(models.Model):
     limit_date = fields.Date(tracking=True)
     treat_date = fields.Datetime()
     treat_duration = fields.Float()
-
 
     def action_draft(self):
         for x in self:
@@ -60,3 +59,19 @@ class Instance_Request(models.Model):
             if x.state != 'brouillon':
                 raise ValidationError(_("Vous ne pouvez supprimer que les demande d’instance en état Brouillon !"))
             return super(Instance_Request, x).unlink()
+
+    def write(self, vals):
+        if vals.get('limit_date'):
+            date_time_obj = datetime.strptime(vals['limit_date'], '%Y-%m-%d')
+            d = date_time_obj.date()
+            if d < date.today():
+                raise ValidationError(_("Vous ne pouvez pas définir une date limite postérieure à aujourd’hui !!"))
+        return super(Instance_Request, self).write(vals)
+
+    # @api.multi
+    # def write(self, vals):
+    #     for x in self:
+    #         if x.limit_date(datetime) < datetime.now():
+    #             res = super(Instance_Request, self).write(vals)
+    #             print("Vous ne pouvez pas définir une date limite postérieure à aujourd’hui !!")
+    #             return res
