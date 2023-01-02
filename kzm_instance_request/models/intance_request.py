@@ -1,5 +1,6 @@
 from odoo import fields, models, api, _
 from datetime import timedelta, date
+from odoo.exceptions import ValidationError
 
 
 class Instance_Request(models.Model):
@@ -53,3 +54,9 @@ class Instance_Request(models.Model):
             vals['reference'] = self.env['ir.sequence'].next_by_code('instance.reconcile') or _('New')
         res = super(Instance_Request, self).create(vals)
         return res
+
+    def unlink(self):
+        for x in self:
+            if x.state != 'brouillon':
+                raise ValidationError(_("Vous ne pouvez supprimer que les demande d’instance en état Brouillon !"))
+            return super(Instance_Request, x).unlink()
