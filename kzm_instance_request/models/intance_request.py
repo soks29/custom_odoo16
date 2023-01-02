@@ -4,7 +4,7 @@ from datetime import timedelta, date
 
 class Instance_Request(models.Model):
     _name = "kzm.instance.request"
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
     _description = "creation d'instance"
 
     name = fields.Char(string="Designation", tracking=True)

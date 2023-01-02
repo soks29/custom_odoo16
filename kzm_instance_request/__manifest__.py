@@ -29,6 +29,7 @@
         'security/ir.model.access.csv',
         'data/instance_data.xml',
         'data/odoo_version_data.xml',
+        #'date/mail_template_data.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',
     ],
