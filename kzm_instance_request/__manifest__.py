@@ -30,8 +30,10 @@
         'data/seq_data.xml',
         'data/activity.xml',
         'data/odoo_version_data.xml',
+        'data/perimetres_data.xml',
         'data/mail_template_data.xml',
         'data/mail_template_data1.xml',
+        'views/perimetres_view.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',
     ],
@@ -39,6 +41,6 @@
     # 'demo':[
     #     'demo/demo.xml',
     # ],
-    'application': 'True',
+    'application': 'False',
     'sequence': -100,
 }

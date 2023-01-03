@@ -26,6 +26,12 @@ class Instance_Request(models.Model):
     treat_date = fields.Datetime()
     treat_duration = fields.Float()
 
+    _sql_constraints = [
+        ('adresse_ip_unique',
+         'unique (adress_ip)',
+         "Please enter a unique ip address, the given address already exists !")
+    ]
+
     def action_draft(self):
         for x in self:
             x.state = 'brouillon'
@@ -41,6 +47,7 @@ class Instance_Request(models.Model):
     def action_treated(self):
         for x in self:
             x.state = 'traite'
+            x.treat_date = datetime.now()
 
     def action_scheduled(self):
         day = self.env['kzm.instance.request'].search([('limit_date', '<=', date.today() + timedelta(days=5))])
@@ -54,24 +61,29 @@ class Instance_Request(models.Model):
         res = super(Instance_Request, self).create(vals)
         return res
 
+    # def unlink(self):
+    #     for state in self:
+    #         if state.name != 'brouillon':
+    #             raise exceptions.UserError(_("Cannot delete an instance which is in a state different to draft"))
+    #         return super().unlink()
+
     def unlink(self):
         for x in self:
             if x.state != 'brouillon':
-                raise ValidationError(_("Vous ne pouvez supprimer que les demande d’instance en état Brouillon !"))
+                raise ValidationError(_("You can only delete instance requests in Draft status!"))
             return super(Instance_Request, x).unlink()
 
     def write(self, vals):
         if vals.get('limit_date'):
+
+            users = self.env.ref('kzm_instance_request.group_kzm_instance_request_responsible').users
+            for user in users:
+                self.activity_schedule('kzm_instance_request.activity_mail_a_traite', user_id=user.id,
+                                       note=f' please approve the {self.reference} instance')
+
             date_time_obj = datetime.strptime(vals['limit_date'], '%Y-%m-%d')
             d = date_time_obj.date()
             if d < date.today():
-                raise ValidationError(_("Vous ne pouvez pas définir une date limite postérieure à aujourd’hui !!"))
+                raise ValidationError(_("You cannot set a deadline later than today!!"))
         return super(Instance_Request, self).write(vals)
 
-    # @api.multi
-    # def write(self, vals):
-    #     for x in self:
-    #         if x.limit_date(datetime) < datetime.now():
-    #             res = super(Instance_Request, self).write(vals)
-    #             print("Vous ne pouvez pas définir une date limite postérieure à aujourd’hui !!")
-    #             return res
