@@ -6,3 +6,4 @@ class Perimetre(models.Model):
     _description = " perimetres"
 
     name = fields.Char(string="Name")
+

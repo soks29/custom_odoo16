@@ -32,6 +32,17 @@ class Instance_Request(models.Model):
          "Please enter a unique ip address, the given address already exists !")
     ]
 
+    partner_id = fields.Many2one(string="Partner", comodel_name='res.partner')
+    tl_id = fields.Many2one(string="Employees", comodel_name='res.users')
+    tl_user_id = fields.Many2one(string="Employee", comodel_name='res.users')
+    odoo_id = fields.Many2one(string="Odoo version", comodel_name='odoo.version')
+    perimeters_ids = fields.Many2many(string="Perimeters", comodel_name='odoo.perimeter')
+
+    nbre_perimeter = fields.Integer(string="Number of perimeters", compute='comp_perimeter')
+
+    def comp_perimeter(self):
+        self.nbre_perimeter = len(self.perimeters_ids)
+
     def action_draft(self):
         for x in self:
             x.state = 'brouillon'
