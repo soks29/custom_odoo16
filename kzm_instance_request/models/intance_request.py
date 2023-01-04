@@ -19,12 +19,12 @@ class Instance_Request(models.Model):
     disk = fields.Char(string="DISK")
     url = fields.Char(string="URL")
     state = fields.Selection(
-        selection=[('brouillon', 'Brouillon'), ('soumise', 'Soumise'), ('entraitement', 'En traitement'),
-                   ('traite', 'Traitée')],
+        selection=[('brouillon', 'Draft copy'), ('soumise', 'Submissive'), ('entraitement', 'Processing'),
+                   ('traite', 'Processed')],
         default='brouillon', tracking=True)
     limit_date = fields.Date(tracking=True)
     treat_date = fields.Datetime()
-    treat_duration = fields.Float()
+    treat_duration = fields.Integer(string="Treat Duration", compute="comp_duration", store=True)
 
     _sql_constraints = [
         ('adresse_ip_unique',
@@ -33,15 +33,25 @@ class Instance_Request(models.Model):
     ]
 
     partner_id = fields.Many2one(string="Partner", comodel_name='res.partner')
-    tl_id = fields.Many2one(string="Employees", comodel_name='res.users')
+    tl_id = fields.Many2one(string="Employees", comodel_name='hr.employee')
     tl_user_id = fields.Many2one(string="Employee", comodel_name='res.users')
     odoo_id = fields.Many2one(string="Odoo version", comodel_name='odoo.version')
     perimeters_ids = fields.Many2many(string="Perimeters", comodel_name='odoo.perimeter')
 
-    nbre_perimeter = fields.Integer(string="Number of perimeters", compute='comp_perimeter')
+    nbre_perimeter = fields.Float(string="Number of perimeters", compute='comp_perimeter', store=True)
 
+    @api.depends('perimeters_ids')
     def comp_perimeter(self):
-        self.nbre_perimeter = len(self.perimeters_ids)
+        for x in self:
+            x.nbre_perimeter = len(x.perimeters_ids)
+
+    @api.depends('treat_date')
+    def comp_duration(self):
+        if self.treat_date:
+            for x in self:
+                now = datetime.now()
+                delta = abs((x.treat_date - now).days)
+            x.treat_duration = delta
 
     def action_draft(self):
         for x in self:
@@ -97,4 +107,3 @@ class Instance_Request(models.Model):
             if d < date.today():
                 raise ValidationError(_("You cannot set a deadline later than today!!"))
         return super(Instance_Request, self).write(vals)
-
