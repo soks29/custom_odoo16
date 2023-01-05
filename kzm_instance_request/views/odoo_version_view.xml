@@ -20,10 +20,18 @@
       <field name="model">odoo.version</field>
       <field name="arch" type="xml">
         <form>
-          <group>
-            <field name="name"/>
+          <sheet>
+            <group>
+              <field name="name"/>
+            </group>
 
-          </group>
+            <notebook>
+              <page string="Instances">
+                <field name="instance_ids"/>
+              </page>
+            </notebook>
+
+          </sheet>
         </form>
       </field>
     </record>
