@@ -15,6 +15,24 @@
                     <field name="odoo_id"/>
                     <field name="perimeters_ids"/>
                     <field name="nbre_perimeter"/>
+                    <group expand="0" string="Group By">
+                        <filter
+                                name="Status"
+                                string="STATE"
+                                context="{'group_by': 'state'}"
+                        />
+                        <filter
+                                name="tl"
+                                string="TL"
+                                context="{'group_by': 'tl_id'}"
+                        />
+
+                        <filter
+                                name="Odoo versions"
+                                string="Odoo Versions"
+                                context="{'group_by': 'odoo_id'}"
+                        />
+                    </group>
                 </search>
             </field>
         </record>
@@ -131,40 +149,60 @@
 
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click">
-                                <div class="oe_kanban_details">
-                                    <ul>
-                                        <li>Creator:
+                            <div class="oe_kanban_global_click p-0" style="background-color: #85E1FF">
+                                <div class="col-3 p-2 text-center align-self-center">
+                                <div style="margin:16px">
+
+                                    <strong style="color : black">Creator:</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
                                             <field name="create_uid"/>
-                                        </li>
-                                        <li>Designation:
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">Designation:</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
                                             <field name="name"/>
-                                        </li>
-                                        <li>Partner:
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">Partner:</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
                                             <field name="partner_id"/>
-                                        </li>
-                                        <li>Number of perimeter:
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">Partner:</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="partner_id"/>
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">Number of perimeter:</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
                                             <field name="nbre_perimeter"/>
-                                        </li>
-                                        <li>Actived:
-                                            <field name="active"/>
-                                        </li>
-                                        <li>Tread date:
-                                            <field name="treat_date"/>
-                                        </li>
-                                        <li>CPU:
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">CPU:</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
                                             <field name="cpu"/>
-                                        </li>
-                                        <li>RAM:
-                                            <field name="ram"/>
-                                        </li>
-                                        <li>DISK:
-                                            <field name="disk"/>
-                                        </li>
-                                        <li>State:
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">State:</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
                                             <field name="state"/>
-                                        </li>
-                                    </ul>
+                                        </span>
+                                    </li>
+
+                                </div>
                                 </div>
                             </div>
                         </t>
@@ -202,6 +240,7 @@
                         <group colspan="2" col="2">
                             <group colspan="1" col="1">
                                 <field name="name" required="True" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+<!--                                <field name="address_employee" attrs="{'readonly':[('state', '=', 'traite')]}"/>-->
                                 <field name="odoo_id" required="True" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="partner_id" required="True"
                                        attrs="{'readonly':[('state', '=', 'traite')]}"/>
