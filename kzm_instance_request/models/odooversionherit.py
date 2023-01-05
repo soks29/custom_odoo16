@@ -1,11 +1,12 @@
-from odoo import api, fields, models
+# -*- coding: utf-8 -*-
+from odoo import models, fields, api, _
 
 
-class OdooVersionHerit(models.Model):
-    _inherit = ['odoo.version']
+class OdooVersion(models.Model):
+    _inherit = 'odoo.version'
 
-    instance_ids = fields.One2many(string="Request for creations", comodel_name='kzm.instance.request', inverse_name="odoo_id")
-    nbre_instance_ids = fields.Integer(string="Number of instances", compute="comp_nbre_instance")
+    instance_ids = fields.One2many('kzm.instance.request', inverse_name='odoo_id', string="Instance")
+    nbre_instance_ids = fields.Integer(string='Instance count', compute='comp_nbre_instance')
 
     @api.depends('instance_ids')
     def comp_nbre_instance(self):

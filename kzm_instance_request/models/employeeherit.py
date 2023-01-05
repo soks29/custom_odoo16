@@ -1,11 +1,14 @@
-from odoo import api, fields, models
+# -*- coding: utf-8 -*-
+
+from odoo import models, fields, api, _
 
 
-class EmployeesHerit(models.Model):
-    _inherit = ['hr.employee']
+class Employee(models.Model):
+    _inherit = 'hr.employee'
 
-    instance_ids = fields.One2many(string="Request for creations", inverse_name="tl_id", comodel_name='kzm.instance.request', tracking=True)
-    nbre_instance_ids = fields.Integer(string="Number of instances", compute="comp_nbre_instance")
+    instance_ids = fields.One2many(comodel_name='kzm.instance.request', inverse_name='tl_id', string="Instance",
+                                   tracking=True)
+    nbre_instance_ids = fields.Integer(string='Instance count', compute='comp_nbre_instance')
 
     @api.depends('instance_ids')
     def comp_nbre_instance(self):
@@ -15,10 +18,9 @@ class EmployeesHerit(models.Model):
     def action_instances(self):
         return {
             'type': 'ir.actions.act_window',
-            'name': 'kzm_instance_request',
+            'name': 'Instances',
             'res_model': 'kzm.instance.request',
             'domain': [('tl_id', '=', self.name)],
             'view_mode': 'tree,form',
             'target': 'current',
         }
-    
