@@ -53,7 +53,7 @@
             <field name="name">Planifier</field>
             <field name="model_id" ref="model_kzm_instance_request"/>
             <field name="interval_number">1</field>
-            <field name="interval_type">minutes</field>
+            <field name="interval_type">days</field>
             <field name="type">ir.actions.server</field>
             <field name="numbercall">-1</field>
             <field name="code">model.action_scheduled()</field>
@@ -132,7 +132,7 @@
             <field name="name">kzm.instance.request.kanban</field>
             <field name="model">kzm.instance.request</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban default_group_by="state">
                     <field name="create_uid"/>
                     <field name="name"/>
                     <field name="partner_id"/>
@@ -336,9 +336,11 @@
         <!--              action="kzm_instance_request.action_server"/>-->
 
         <menuitem id="test_menu_root" name="Instance"
-                  web_icon="kzm_instance_request, static/description/icon.png"/>
+                  web_icon="kzm_instance_request, /static/description/icon.png"/>
         <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" parent="test_menu_root"
-                  name="Mes demandes" groups="kzm_instance_request.group_kzm_instance_request_user"/>
+                  name="Mes demandes"
+                  groups="kzm_instance_request.group_kzm_instance_request_user"/>
+
         <menuitem id="model1_menu1_action" action="kzm_instance_request.kzm_odoo_instance_window"
                   parent="test_menu_root" name="Odoo Version"/>
         <menuitem id="model1_menu2_action" parent="test_menu_root" name="Responsables">
@@ -356,5 +358,6 @@
         <menuitem id="model1_menu5_action" action="kzm_instance_request.perimeter_instance_window"
                   parent="test_menu_root" name="Perimetre"
                   groups="kzm_instance_request.group_kzm_instance_request_admin"/>
+
     </data>
 </odoo>
