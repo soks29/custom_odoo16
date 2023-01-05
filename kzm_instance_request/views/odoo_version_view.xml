@@ -26,7 +26,7 @@
             </group>
 
             <notebook>
-              <page string="Instances">
+              <page string="Instances Odoo Version">
                 <field name="instance_ids"/>
               </page>
             </notebook>

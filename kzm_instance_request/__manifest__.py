@@ -20,7 +20,7 @@
     'version': '16.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail', 'contacts', 'sale_management', 'hr'],
+    'depends': ['base', 'mail', 'contacts', 'sale_management', 'hr', 'sale'],
 
     # always loaded
     'data': [
@@ -33,6 +33,7 @@
         'data/mail_template_data.xml',
         'data/mail_template_data1.xml',
         'views/perimetres_view.xml',
+        'views/devis_view.xml',
         'views/employee_view.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',

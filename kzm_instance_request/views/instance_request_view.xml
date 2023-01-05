@@ -335,8 +335,8 @@
         <!--    <menuitem name="Server to list" id="kzm_instance_request" parent="kzm_instance_request.menu_2"-->
         <!--              action="kzm_instance_request.action_server"/>-->
 
-        <menuitem id="test_menu_root" name="Instance"
-                  web_icon="kzm_instance_request, /static/description/icon.png"/>
+        <menuitem id="test_menu_root" name="Odoo Instance"
+                  web_icon="kzm_instance_request,static/description/icon.png"/>
         <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" parent="test_menu_root"
                   name="Mes demandes"
                   groups="kzm_instance_request.group_kzm_instance_request_user"/>
