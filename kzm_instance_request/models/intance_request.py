@@ -39,7 +39,7 @@ class Instance_Request(models.Model):
     tl_user_id = fields.Many2one(string="Employee", comodel_name='res.users')
     odoo_id = fields.Many2one(string="Odoo version", comodel_name='odoo.version')
     perimeters_ids = fields.Many2many(string="Perimeters", comodel_name='odoo.perimeter')
-    # address_employee = fields.Many2one(string="Address employee", related="employee_id.address_id")
+    # address_employee = fields.Many2one(string="Address employee", related='employee_id.address_id')
 
     nbre_perimeter = fields.Float(string="Number of perimeters", compute='comp_perimeter', store=True)
 

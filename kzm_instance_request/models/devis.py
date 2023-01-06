@@ -7,3 +7,7 @@ class Order(models.Model):
     _inherit = 'sale.order'
 
     version_odoo_id = fields.Many2one(comodel_name="odoo.version", string="Id odoo version")
+
+    def add_instance(self):
+        for x in self:
+            x.state = 'soumise'

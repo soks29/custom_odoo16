@@ -32,11 +32,13 @@
         'data/perimetres_data.xml',
         'data/mail_template_data.xml',
         'data/mail_template_data1.xml',
+        'wizards/bonscommandeventes.xml',
         'views/perimetres_view.xml',
         'views/devis_view.xml',
         'views/employee_view.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',
+
     ],
     # only loaded in demonstration mode
     # 'demo':[
