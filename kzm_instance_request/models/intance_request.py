@@ -34,7 +34,7 @@ class Instance_Request(models.Model):
          "Please enter a unique ip address, the given address already exists !")
     ]
 
-    partner_id = fields.Many2one(string="Partner", comodel_name='res.partner')
+    partner_id = fields.Many2one(string="Customer", comodel_name='res.partner')
     tl_id = fields.Many2one(string="Employees", comodel_name='hr.employee')
     tl_user_id = fields.Many2one(string="Employee", comodel_name='res.users')
     odoo_id = fields.Many2one(string="Odoo version", comodel_name='odoo.version')
