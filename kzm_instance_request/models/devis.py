@@ -8,6 +8,4 @@ class Order(models.Model):
 
     version_odoo_id = fields.Many2one(comodel_name="odoo.version", string="Id odoo version")
 
-    def add_instance(self):
-        action = self.env.ref('kzm_instance_request.create_bons_commande_wizard').read()[0]
-        return action
+

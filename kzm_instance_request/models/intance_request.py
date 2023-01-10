@@ -27,6 +27,7 @@ class Instance_Request(models.Model):
     limit_date = fields.Date(tracking=True)
     treat_date = fields.Datetime()
     treat_duration = fields.Integer(string="Treat Duration", compute="comp_duration", store=True)
+    sale_id = fields.Many2one(comodel_name='sale.order', string="Purchase order")
 
     _sql_constraints = [
         ('adresse_ip_unique',

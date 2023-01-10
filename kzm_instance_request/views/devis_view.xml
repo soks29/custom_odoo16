@@ -13,23 +13,6 @@
             </field>
         </record>
 
-        <!-- List view_order_tree -->
-        <record id="quotation_list_view_extend1" model="ir.ui.view">
-            <field name="name">Quotation list</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_tree"/>
-            <field name="arch" type="xml">
-                <tree>
-                    <header>
-                        <button string="Create instances"
-                                type="action"
-                                name="%(kzm_instance_request.create_bons_commande_wizard)d"
-                                class="btn-primary" />
-                    </header>
-                </tree>
-
-            </field>
-        </record>
 
         <!-- Form view -->
         <record id="quotation_form_view_extend" model="ir.ui.view">
@@ -42,6 +25,7 @@
                 </xpath>
             </field>
         </record>
+
 
         <record id="search_devis_version_odoo" model="ir.ui.view">
             <field name="model">sale.order</field>
@@ -58,5 +42,6 @@
                 </xpath>
             </field>
         </record>
+
     </data>
 </odoo>

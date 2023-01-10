@@ -38,6 +38,8 @@
         'views/employee_view.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',
+        'reports/request_report_template.xml',
+        # 'reports/report.xml',
 
     ],
     # only loaded in demonstration mode

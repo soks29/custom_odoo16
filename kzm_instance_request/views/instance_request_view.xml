@@ -89,7 +89,9 @@
                     <field name="treat_date"/>
                     <field name="cpu"/>
                     <field name="ram"/>
+                    <field name="sale_id"/>
                     <field name="disk"/>
+
                     <field name="state"
                            decoration-success="state == 'traite' or state == 'entraitement'"
                            decoration-info="state == 'brouillon' or state == 'entraitement'" widget="badge"
@@ -174,58 +176,58 @@
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click p-0" style="background-color: #85E1FF">
                                 <div class="col-3 p-2 text-center align-self-center">
-                                <div style="margin:16px">
+                                    <div style="margin:16px">
 
-                                    <strong style="color : black">Creator:</strong>
-                                    <li style="margin-left: 1cm">
-                                        <span style="color:red">
-                                            <field name="create_uid"/>
-                                        </span>
-                                    </li>
+                                        <strong style="color : black">Creator:</strong>
+                                        <li style="margin-left: 1cm">
+                                            <span style="color:red">
+                                                <field name="create_uid"/>
+                                            </span>
+                                        </li>
 
-                                    <strong style="color : black">Designation:</strong>
-                                    <li style="margin-left: 1cm">
-                                        <span style="color:red">
-                                            <field name="name"/>
-                                        </span>
-                                    </li>
+                                        <strong style="color : black">Designation:</strong>
+                                        <li style="margin-left: 1cm">
+                                            <span style="color:red">
+                                                <field name="name"/>
+                                            </span>
+                                        </li>
 
-                                    <strong style="color : black">Partner:</strong>
-                                    <li style="margin-left: 1cm">
-                                        <span style="color:red">
-                                            <field name="partner_id"/>
-                                        </span>
-                                    </li>
+                                        <strong style="color : black">Partner:</strong>
+                                        <li style="margin-left: 1cm">
+                                            <span style="color:red">
+                                                <field name="partner_id"/>
+                                            </span>
+                                        </li>
 
-                                    <strong style="color : black">Partner:</strong>
-                                    <li style="margin-left: 1cm">
-                                        <span style="color:red">
-                                            <field name="partner_id"/>
-                                        </span>
-                                    </li>
+                                        <strong style="color : black">Partner:</strong>
+                                        <li style="margin-left: 1cm">
+                                            <span style="color:red">
+                                                <field name="partner_id"/>
+                                            </span>
+                                        </li>
 
-                                    <strong style="color : black">Number of perimeter:</strong>
-                                    <li style="margin-left: 1cm">
-                                        <span style="color:red">
-                                            <field name="nbre_perimeter"/>
-                                        </span>
-                                    </li>
+                                        <strong style="color : black">Number of perimeter:</strong>
+                                        <li style="margin-left: 1cm">
+                                            <span style="color:red">
+                                                <field name="nbre_perimeter"/>
+                                            </span>
+                                        </li>
 
-                                    <strong style="color : black">CPU:</strong>
-                                    <li style="margin-left: 1cm">
-                                        <span style="color:red">
-                                            <field name="cpu"/>
-                                        </span>
-                                    </li>
+                                        <strong style="color : black">CPU:</strong>
+                                        <li style="margin-left: 1cm">
+                                            <span style="color:red">
+                                                <field name="cpu"/>
+                                            </span>
+                                        </li>
 
-                                    <strong style="color : black">State:</strong>
-                                    <li style="margin-left: 1cm">
-                                        <span style="color:red">
-                                            <field name="state"/>
-                                        </span>
-                                    </li>
+                                        <strong style="color : black">State:</strong>
+                                        <li style="margin-left: 1cm">
+                                            <span style="color:red">
+                                                <field name="state"/>
+                                            </span>
+                                        </li>
 
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </t>
@@ -263,7 +265,7 @@
                         <group colspan="2" col="2">
                             <group colspan="1" col="1">
                                 <field name="name" required="True" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-<!--                                <field name="address_employee" attrs="{'readonly':[('state', '=', 'traite')]}"/>-->
+                                <!--                                <field name="address_employee" attrs="{'readonly':[('state', '=', 'traite')]}"/>-->
                                 <field name="odoo_id" required="True" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="partner_id" required="True"
                                        attrs="{'readonly':[('state', '=', 'traite')]}"/>
@@ -283,11 +285,13 @@
                             </group>
 
                             <group colspan="1" col="2">
+                                <field name="sale_id"/>
                                 <field name="url" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="state" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                             </group>
 
                             <group colspan="1" col="2">
+
                                 <field name="nbre_perimeter" readonly="True"
                                        attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="limit_date" attrs="{'readonly':[('state', '=', 'traite')]}"/>
@@ -409,7 +413,7 @@
                   action="kzm_instance_request.demandes_record_retard1"
                   parent="test_menu_root"
                   name="list of late requests"
-                  groups="kzm_instance_request.group_kzm_instance_request_responsible"/>
+                  groups="kzm_instance_request.group_kzm_instance_request_user"/>
 
     </data>
 </odoo>

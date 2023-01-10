@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- Server action -->
+        <record model="ir.actions.act_window" id="sale_order_purchase_action">
+            <field name="name">Requests</field>
+            <field name="res_model">create.bons.command</field>
+            <field name="view_mode">form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="target">new</field>
+        </record>
+
     <record id="create_bons_commande_form" model="ir.ui.view">
-        <field name="name">create.bons.commande.wizard</field>
-        <field name="model">create.bons.commande</field>
+        <field name="name">create.bons.command.wizard</field>
+        <field name="model">create.bons.command</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -15,14 +24,12 @@
                         </group>
                         <group>
                             <field name="limit_date"/>
-                            <field name="partner_id"/>
-                            <field name="odoo_id"/>
                             <field name="url"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Purchase order">
-                            <field name="purchase_orders"/>
+                        <page string="Sale order">
+                            <field name="sale_ids"/>
                         </page>
                     </notebook>
                     <footer>
@@ -36,30 +43,17 @@
     </record>
 
     <!-- List view -->
-    <record id="purchase_order_list_view" model="ir.ui.view">
-        <field name="name">Purchase order list</field>
+    <record id="sale_order_list_view" model="ir.ui.view">
+        <field name="name">Sale order list</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
             <xpath expr="/tree" position="inside">
                 <header>
-                    <button name="add_instance" string="Create instance"
-                            type="object" class="oe_highlight"/>
+                    <button name="%(sale_order_purchase_action)d" string="Create instance"
+                            type="action" class="oe_highlight"/>
                 </header>
             </xpath>
-        </field>
-    </record>
-
-    <record id="create_bons_commande_wizard" model="ir.actions.act_window">
-        <field name="name">Purchase orders</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">create.bons.commande</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="create_bons_commande_form"/>
-        <field name="target">new</field>
-        <field name="context">{
-            'dialog_size' : 'medium',
-            }
         </field>
     </record>
 </odoo>
