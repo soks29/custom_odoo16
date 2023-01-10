@@ -76,7 +76,7 @@
         </record>
         <!-- explicit list view definition -->
 
-        <record model="ir.ui.view" id="kzm_instance_request_list_view">
+        <record model="ir.ui.view" id="kzm_instance_request.list_view">
             <field name="name">kzm_instance_request list</field>
             <field name="model">kzm.instance.request</field>
             <field name="arch" type="xml">
@@ -274,7 +274,6 @@
                                        attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="adress_ip"
                                        attrs="{'invisible':[('state','!=','traite')], 'readonly':[('state', '=', 'traite')]}"/>
-                                <field name="active" attrs="{'readonly':[('state', '=', 'traite')]}" default="True"/>
                             </group>
                             <group colspan="1" col="2">S
                                 <field name="perimeters_ids" attrs="{'readonly':[('state', '=', 'traite')]}"
@@ -287,7 +286,6 @@
                             <group colspan="1" col="2">
                                 <field name="sale_id"/>
                                 <field name="url" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-                                <field name="state" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                             </group>
 
                             <group colspan="1" col="2">
@@ -296,7 +294,7 @@
                                        attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="limit_date" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="treat_date" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-                                <field name="treat_duration" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="treat_duration" readonly="True"/>
                             </group>
                         </group>
                     </sheet>
@@ -319,7 +317,7 @@
 
 
         <record id="kzm_instance_request_window" model="ir.actions.act_window">
-            <field name="name">Demande d’instance</field>
+            <field name="name">Instance request</field>
             <field name="res_model">kzm.instance.request</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">['|',('state','=','soumise'),('state','=','entraitement')]</field>
@@ -332,7 +330,7 @@
 
 
         <record id="kzm_instance_request_action_window" model="ir.actions.act_window">
-            <field name="name">Demande d’instance</field>
+            <field name="name">Instance request</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">kzm.instance.request</field>
             <field name="view_mode">tree,activity,form,kanban,gantt,pivot,graph</field>
@@ -369,7 +367,7 @@
         <menuitem id="session_model_menu_action"
                   action="kzm_instance_request_action_window"
                   parent="test_menu_root"
-                  name="Mes demandes"
+                  name="My requests"
                   groups="kzm_instance_request.group_kzm_instance_request_user"/>
 
         <menuitem id="model1_menu1_action"
@@ -381,12 +379,12 @@
 
             <menuitem id="model_odo"
                       action="kzm_instance_request.kzm_instance_request_window"
-                      name="À valider"
+                      name="To validate"
                       sequence="10"
                       groups="kzm_instance_request.group_kzm_instance_request_responsible"/>
             <menuitem id="model2_odoo"
                       action="kzm_instance_request.kzm_instance_request_action_window"
-                      name="Toutes"
+                      name="All"
                       groups="kzm_instance_request.group_kzm_instance_request_responsible"/>
 
         </menuitem>
@@ -406,7 +404,7 @@
         <menuitem id="model1_menu5_action"
                   action="kzm_instance_request.perimeter_instance_window"
                   parent="test_menu_root"
-                  name="Perimetre"
+                  name="Perimeter"
                   groups="kzm_instance_request.group_kzm_instance_request_admin"/>
 
         <menuitem id="model1_menu6_action"

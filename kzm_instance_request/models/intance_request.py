@@ -15,11 +15,12 @@ class Instance_Request(models.Model):
                             required=True, copy=False,
                             default=lambda self: _('New'))
     active = fields.Boolean(default=True)
-    adress_ip = fields.Char(string="Adresse IP")
+    adress_ip = fields.Char(string="Address IP")
     cpu = fields.Char(string="CPU")
     ram = fields.Char(string="RAM")
     disk = fields.Char(string="DISK")
     url = fields.Char(string="URL")
+    current_time = fields.Datetime.now()
     state = fields.Selection(
         selection=[('brouillon', 'Draft copy'), ('soumise', 'Submissive'), ('entraitement', 'Processing'),
                    ('traite', 'Processed')],
@@ -27,7 +28,7 @@ class Instance_Request(models.Model):
     limit_date = fields.Date(tracking=True)
     treat_date = fields.Datetime()
     treat_duration = fields.Integer(string="Treat Duration", compute="comp_duration", store=True)
-    sale_id = fields.Many2one(comodel_name='sale.order', string="Purchase order")
+    sale_id = fields.Many2one(comodel_name='sale.order', string="Sale order")
 
     _sql_constraints = [
         ('adresse_ip_unique',

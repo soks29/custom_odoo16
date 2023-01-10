@@ -1,40 +1,39 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, fields, api, _, exceptions
 
 
 class BonsCommandeVentes(models.TransientModel):
     _name = 'create.bons.command'
 
-    cpu = fields.Char(string="CPU")
-    ram = fields.Char(string="RAM")
-    disk = fields.Char(string="DISK")
-    tl_id = fields.Many2one(string="Employees", comodel_name='hr.employee')
-    limit_date = fields.Date(string="Limit date", tracking=True)
+    cpu = fields.Char(string='CPU')
+    ram = fields.Char(string='RAM')
+    disk = fields.Char(string='DISK')
+    limit_date = fields.Date(string='Processing deadline')
+    tl = fields.Many2one(comodel_name='hr.employee', string="Employees")
     url = fields.Char(string="URL")
 
-    def default_sale_order(self):
-        for x in self:
-            return x.env['sale.order'].browse(self._context.get('active_ids'))
+    def default_sales(self):
+        return self.env['sale.order'].browse(self._context.get('active_ids'))
 
-    sale_ids = fields.Many2many(comodel_name="sale.order", string="Sale Order", required=True,
-                                default=default_sale_order)
+    sale_order_ids = fields.Many2many(comodel_name='sale.order', string="Sale Order", default=default_sales)
 
-    def create_bons_commande(self):
-        domain = [('tl_id', '=', self.tl_id)]
-        if self.cpu <= 0 or self.disk <= 0 or self.ram <= 0:
-            raise ValidationError(_("You cannot request instances with zero performance"))
-        for x in range(len(self.purchase_orders)):
-            self.env['kzm.instance.request'].create({
-                'name': self.name,
+    def create_instance(self):
+        ids_rec = []
+        if int(self.cpu) == 0 or int(self.disk) == 0 or int(self.ram) == 0:
+            raise exceptions.ValidationError(_("You cannot request instances with zero performance"))
+        for x in self.sale_order_ids:
+            val = self.env['kzm.instance.request'].create({
                 'cpu': self.cpu,
+                'ram': self.ram,
                 'disk': self.disk,
-                'url': self.url,
                 'limit_date': self.limit_date,
-                'tl_id': self.tl_id.id,
+                'url': self.url,
+                'tl_id': self.tl.id,
+                'sale_id': x.id
             })
-
+            ids_rec.append(val.id)
+        domain = [('id', '=', ids_rec)]
         return {
             'name': _('list of instance created'),
             'res_model': 'kzm.instance.request',
@@ -42,5 +41,5 @@ class BonsCommandeVentes(models.TransientModel):
             'context': {},
             'domain': domain,
             'type': 'ir.actions.act_window',
-            'views': [(self.env.ref('kzm_instance_request.kzm_instance_request_list_view').id, 'tree')]
+            'views': [(self.env.ref('kzm_instance_request.list_view').id, 'tree')]
         }
