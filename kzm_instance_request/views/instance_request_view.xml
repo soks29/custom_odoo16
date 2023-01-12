@@ -44,10 +44,8 @@
 
                 <search>
                     <filter name="filter_late_requests" string="Late Requests"
-                            domain="[('limit_date', '&gt;', context_today() + datetime.timedelta(days=5))]"/>
-
+                            domain="[('limit_date', '&gt;', context_today() + datetime.timedelta(days=5)), ('state', '!=', 'traite')]"/>
                 </search>
-
             </field>
         </record>
 
@@ -88,10 +86,9 @@
                     <field name="active"/>
                     <field name="treat_date"/>
                     <field name="cpu"/>
-                    <field name="ram"/>
                     <field name="sale_id"/>
+                    <field name="ram"/>
                     <field name="disk"/>
-
                     <field name="state"
                            decoration-success="state == 'traite' or state == 'entraitement'"
                            decoration-info="state == 'brouillon' or state == 'entraitement'" widget="badge"
@@ -119,12 +116,10 @@
                 <gantt color="id" disable_drag_drop="1" plan="0" delete="0"
                        date_start="treat_date"
                        date_stop="limit_date"
-
                        decoration-danger="state=='brouillon'"
                        decoration-info="state=='soumise'"
                        decoration-success="state=='entraitement'"
                        decoration-warning="state=='traite'"
-
                        default_group_by="create_uid">
                     <field name="name"/>
                     <field name="state"/>
@@ -265,7 +260,6 @@
                         <group colspan="2" col="2">
                             <group colspan="1" col="1">
                                 <field name="name" required="True" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-                                <!--                                <field name="address_employee" attrs="{'readonly':[('state', '=', 'traite')]}"/>-->
                                 <field name="odoo_id" required="True" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="partner_id" required="True"
                                        attrs="{'readonly':[('state', '=', 'traite')]}"/>
@@ -284,7 +278,7 @@
                             </group>
 
                             <group colspan="1" col="2">
-                                <field name="sale_id"/>
+                                <field name="sale_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="url" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                             </group>
 

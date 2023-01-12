@@ -37,8 +37,9 @@ class BonsCommandeVentes(models.TransientModel):
         return {
             'name': _('list of instance created'),
             'res_model': 'kzm.instance.request',
-            'view_mode': 'tree, form',
+            'view_mode': 'tree,form',
             'context': {},
             'domain': domain,
+            'target': 'current',
             'type': 'ir.actions.act_window',
         }

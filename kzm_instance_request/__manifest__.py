@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "kzm_instance_request",
+    'name': "Instance Request",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
+        Short (1 phrase/line) sum
+        mary of the module's purpose, used as
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
@@ -35,11 +36,11 @@
         'wizard/bonscommandeventes.xml',
         'views/perimetres_view.xml',
         'views/devis_view.xml',
+        'views/template.xml',
         'views/employee_view.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',
         'reports/request_report_template.xml',
-        # 'reports/report.xml',
 
     ],
     # only loaded in demonstration mode
@@ -47,5 +48,5 @@
     #     'demo/demo.xml',
     # ],
     # 'application': 'False',
-    # 'sequence': -100,
+    'sequence': -100,
 }

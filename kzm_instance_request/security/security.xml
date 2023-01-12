@@ -24,6 +24,7 @@
         <field name="comment">Admin  Permission Group.</field>
         <field name="category_id" ref="module_category_kzm"/>
         <field name="implied_ids" eval="[(4, ref('group_kzm_instance_request_responsible'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
     </record>
 
 </odoo>
