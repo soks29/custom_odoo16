@@ -1,5 +1,16 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+from odoo.http import request
+
+
+class KzmInstanceCreationPortal(http.Controller):
+    @http.route('/instance/ask', website=True, auth='public')
+    def index(self, **kw):
+        instance_r = request.env['kzm.instance.request'].sudo().search([])
+        print("instance----", instance_r)
+        return request.render("kzm_instance_request.example1", {
+            'name': instance_r
+        })
 
 
 # class KzmInstanceCreationPortal(http.Controller):

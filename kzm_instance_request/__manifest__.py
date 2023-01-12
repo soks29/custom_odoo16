@@ -36,7 +36,6 @@
         'wizard/bonscommandeventes.xml',
         'views/perimetres_view.xml',
         'views/devis_view.xml',
-        'views/template.xml',
         'views/employee_view.xml',
         'views/odoo_version_view.xml',
         'views/instance_request_view.xml',
