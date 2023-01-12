@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-10 16:49+0000\n"
-"PO-Revision-Date: 2023-01-10 16:49+0000\n"
+"POT-Creation-Date: 2023-01-12 09:32+0000\n"
+"PO-Revision-Date: 2023-01-12 09:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgid ""
 "                                                <tr>\n"
 "                                                    <td valign=\"middle\">\n"
 "                                                        <br/>\n"
-"                                                        <span style=\"font-size: 20px; font-weight: bold;\" t-out=\"object.name\">Création d’instance\n"
+"                                                        <span style=\"font-size: 20px; font-weight: bold;\" t-out=\"object.name\">Instance creation\n"
 "                                                        </span>\n"
 "                                                    </td>\n"
 "                                                    <td valign=\"middle\" align=\"right\">\n"
@@ -107,7 +107,7 @@ msgid ""
 "                                                <tr>\n"
 "                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
 "                                                        <div>\n"
-"                                                            Bonjour, Veuillez bien créer une instance <t t-out=\"object.name\"/> avec comme performances :\n"
+"                                                            Hello, Please create an instance <t t-out=\"object.name\"/> with the performance:\n"
 "                                                            <br/>\n"
 "                                                            <br/>\n"
 "                                                            <table>\n"
@@ -130,7 +130,7 @@ msgid ""
 "                                                            </table>\n"
 "                                                            <br/>\n"
 "                                                            <br/>\n"
-"                                                            Cordialement\n"
+"                                                            Cordially\n"
 "                                                        </div>\n"
 "                                                    </td>\n"
 "                                                </tr>\n"
@@ -187,12 +187,12 @@ msgid ""
 "                                                <tr>\n"
 "                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
 "                                                        <div>\n"
-"                                                            Bonjour, <br/>\n"
-"                                                            Votre instance <t t-out=\"object.name\"/> a bien été crée.\n"
-"                                                            Elle est accessible sur le lien <t t-out=\"object.adress_ip\"/>\n"
+"                                                            Hello, <br/>\n"
+"                                                            Your instance <t t-out=\"object.name\"/> has been created.\n"
+"                                                            It is available at the link <t t-out=\"object.adress_ip\"/>\n"
 "                                                            <br/>\n"
 "                                                            <br/>\n"
-"                                                            Cordialement\n"
+"                                                            Cordially\n"
 "                                                        </div>\n"
 "                                                    </td>\n"
 "                                                </tr>\n"
@@ -656,6 +656,7 @@ msgid "Order Reference"
 msgstr ""
 
 #. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.perimeter_instance_window
 #: model:ir.ui.menu,name:kzm_instance_request.model1_menu5_action
 msgid "Perimeter"
 msgstr ""
@@ -785,13 +786,14 @@ msgid "TL"
 msgstr ""
 
 #. module: kzm_instance_request
-#: model:ir.ui.menu,name:kzm_instance_request.model_odo
-msgid "To validate"
+#: model:ir.actions.server,name:kzm_instance_request.submitted_cron_ir_actions_server
+#: model:ir.cron,cron_name:kzm_instance_request.submitted_cron
+msgid "To plan"
 msgstr ""
 
 #. module: kzm_instance_request
-#: model:ir.actions.server,name:kzm_instance_request.action_valide
-msgid "Traiter"
+#: model:ir.ui.menu,name:kzm_instance_request.model_odo
+msgid "To validate"
 msgstr ""
 
 #. module: kzm_instance_request
@@ -805,6 +807,7 @@ msgid "Treat Duration"
 msgstr ""
 
 #. module: kzm_instance_request
+#: model:ir.actions.server,name:kzm_instance_request.action_valide
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_request_form_view
 msgid "Treated"
 msgstr ""
@@ -820,6 +823,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.report_invoice
 msgid "URL"
 msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__tl_user_id
+msgid "User"
+msgstr "Utilisateur"
 
 #. module: kzm_instance_request
 #: model:res.groups,name:kzm_instance_request.group_kzm_instance_request_user
@@ -869,7 +877,7 @@ msgstr "create.bons.command"
 
 #. module: kzm_instance_request
 #: model:ir.model,name:kzm_instance_request.model_kzm_instance_request
-msgid "creation d'instance"
+msgid "instance creation"
 msgstr "création d'instance"
 
 #. module: kzm_instance_request
@@ -891,8 +899,8 @@ msgstr "liste des demandes tardives"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.partner_graph_view
-msgid "nombre de demande par date de création"
-msgstr "number of requests by creation date"
+msgid "number of requests by creation date"
+msgstr "nombre de demande par date de création"
 
 #. module: kzm_instance_request
 #: model:ir.model,name:kzm_instance_request.model_odoo_version
