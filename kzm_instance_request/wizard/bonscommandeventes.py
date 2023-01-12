@@ -20,7 +20,7 @@ class BonsCommandeVentes(models.TransientModel):
 
     def create_instance(self):
         ids_rec = []
-        if int(self.cpu) == 0 or int(self.disk) == 0 or int(self.ram) == 0:
+        if self.cpu == 0 or self.disk == 0 or self.ram == 0:
             raise exceptions.ValidationError(_("You cannot request instances with zero performance"))
         for x in self.sale_order_ids:
             val = self.env['kzm.instance.request'].create({
@@ -41,5 +41,4 @@ class BonsCommandeVentes(models.TransientModel):
             'context': {},
             'domain': domain,
             'type': 'ir.actions.act_window',
-            'views': [(self.env.ref('kzm_instance_request.list_view').id, 'tree')]
         }

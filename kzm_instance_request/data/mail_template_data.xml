@@ -26,7 +26,7 @@
                                                     <td valign="middle">
                                                         <br/>
                                                         <span style="font-size: 20px; font-weight: bold;"
-                                                              t-out="object.name">Création d’instance
+                                                              t-out="object.name">Instance creation
                                                         </span>
                                                     </td>
                                                     <td valign="middle" align="right">
@@ -52,7 +52,7 @@
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <div>
-                                                            Bonjour, Veuillez bien créer une instance <t t-out="object.name"></t> avec comme performances :
+                                                            Hello, Please create an instance <t t-out="object.name"></t> with the performance:
                                                             <br/>
                                                             <br/>
                                                             <table>
@@ -75,7 +75,7 @@
                                                             </table>
                                                             <br/>
                                                             <br/>
-                                                            Cordialement
+                                                            Cordially
                                                         </div>
                                                     </td>
                                                 </tr>

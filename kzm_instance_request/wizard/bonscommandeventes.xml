@@ -22,7 +22,7 @@
                     </notebook>
 
                     <footer>
-                       <button name="create_instance" string="Create and Save" class="btn-primary" type="object"/>
+                       <button name="create_instance" string="Create" class="btn-primary" type="object"/>
 
                         <button special="cancel" class="btn-secondary" string="DISCARD"/>
                     </footer>
@@ -48,7 +48,6 @@
                         <button name="%(action_create_order_instance)d" string="Create Instances"
                                 type="action"/>
                     </header>
-
 
                 </xpath>
             </field>

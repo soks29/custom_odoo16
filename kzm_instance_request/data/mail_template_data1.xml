@@ -52,12 +52,12 @@
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <div>
-                                                            Bonjour, <br/>
-                                                            Votre instance <t t-out="object.name"></t> a bien été crée.
-                                                            Elle est accessible sur le lien <t t-out="object.adress_ip"></t>
+                                                            Hello, <br/>
+                                                            Your instance <t t-out="object.name"></t> has been created.
+                                                            It is available at the link <t t-out="object.adress_ip"></t>
                                                             <br/>
                                                             <br/>
-                                                            Cordialement
+                                                            Cordially
                                                         </div>
                                                     </td>
                                                 </tr>

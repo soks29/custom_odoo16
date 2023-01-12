@@ -18,57 +18,57 @@ msgstr ""
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.employee_form_view_extend
 msgid "<span class=\"o_stat_text\">List Instances</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Liste instances</span>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_res_users_kanban
 msgid "<strong style=\"color : black\">CPU:</strong>"
-msgstr ""
+msgstr "<strong style=\"color : black\">CPU:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_res_users_kanban
 msgid "<strong style=\"color : black\">Creator:</strong>"
-msgstr ""
+msgstr "<strong style=\"color : black\">Créateur:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_res_users_kanban
 msgid "<strong style=\"color : black\">Designation:</strong>"
-msgstr ""
+msgstr "<strong style=\"color : black\">Désignation:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_res_users_kanban
 msgid "<strong style=\"color : black\">Number of perimeter:</strong>"
-msgstr ""
+msgstr "<strong style=\"color : black\">Nombre de périmètre:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_res_users_kanban
 msgid "<strong style=\"color : black\">Partner:</strong>"
-msgstr ""
+msgstr "<strong style=\"color : black\">Partenaire:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_res_users_kanban
 msgid "<strong style=\"color : black\">State:</strong>"
-msgstr ""
+msgstr "<strong style=\"color : black\">État:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.report_invoice
 msgid "<strong>Customer:</strong>"
-msgstr ""
+msgstr "<strong>Client(e):</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.report_invoice
 msgid "<strong>TL:</strong>"
-msgstr ""
+msgstr "<strong>TL:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.report_invoice
 msgid "<strong>Tread Date:</strong>"
-msgstr ""
+msgstr "<strong>Date de traitement:</strong>"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.report_invoice
 msgid "<strong>Version:</strong>"
-msgstr ""
+msgstr "<strong>Version:</strong>"
 
 #. module: kzm_instance_request
 #: model:mail.template,body_html:kzm_instance_request.mail_template_data
@@ -860,17 +860,17 @@ msgstr ""
 #: code:addons/kzm_instance_request/models/intance_request.py:0
 #, python-format
 msgid "You cannot set a deadline later than today!!"
-msgstr ""
+msgstr "Vous ne pouvez pas fixer une date limite plus tard qu'aujourd'hui !!"
 
 #. module: kzm_instance_request
 #: model:ir.model,name:kzm_instance_request.model_create_bons_command
 msgid "create.bons.command"
-msgstr ""
+msgstr "create.bons.command"
 
 #. module: kzm_instance_request
 #: model:ir.model,name:kzm_instance_request.model_kzm_instance_request
 msgid "creation d'instance"
-msgstr ""
+msgstr "création d'instance"
 
 #. module: kzm_instance_request
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.partner_pivot_view
@@ -882,7 +882,7 @@ msgstr "duration of the treatment"
 #: code:addons/kzm_instance_request/wizard/bonscommandeventes.py:0
 #, python-format
 msgid "list of instance created"
-msgstr ""
+msgstr "liste des instances créées"
 
 #. module: kzm_instance_request
 #: model:ir.ui.menu,name:kzm_instance_request.model1_menu6_action
@@ -897,7 +897,7 @@ msgstr "number of requests by creation date"
 #. module: kzm_instance_request
 #: model:ir.model,name:kzm_instance_request.model_odoo_version
 msgid "odoo version"
-msgstr ""
+msgstr "odoo version"
 
 #. module: kzm_instance_request
 #: model:ir.model,name:kzm_instance_request.model_odoo_perimeter
@@ -907,4 +907,4 @@ msgstr "périmètres"
 #. module: kzm_instance_request
 #: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__name
 msgid "version"
-msgstr ""
+msgstr "version"

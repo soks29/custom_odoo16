@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 class Instance_Request(models.Model):
     _name = "kzm.instance.request"
     _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
-    _description = "creation d'instance"
+    _description = "instance creation"
 
     name = fields.Char(string="Designation", tracking=True)
     reference = fields.Char(string="Order Reference",
@@ -38,7 +38,7 @@ class Instance_Request(models.Model):
 
     partner_id = fields.Many2one(string="Customer", comodel_name='res.partner')
     tl_id = fields.Many2one(string="Employees", comodel_name='hr.employee')
-    tl_user_id = fields.Many2one(string="Employee", comodel_name='res.users')
+    tl_user_id = fields.Many2one(string="User", comodel_name='res.users')
     odoo_id = fields.Many2one(string="Odoo version", comodel_name='odoo.version')
     perimeters_ids = fields.Many2many(string="Perimeters", comodel_name='odoo.perimeter')
     # address_employee = fields.Many2one(string="Address employee", related='employee_id.address_id')
@@ -52,8 +52,9 @@ class Instance_Request(models.Model):
 
     @api.depends('treat_date')
     def comp_duration(self):
-        if self.treat_date:
-            for x in self:
+        delta = False
+        for x in self:
+            if x.treat_date:
                 now = datetime.now()
                 delta = abs((x.treat_date - now).days)
             x.treat_duration = delta
