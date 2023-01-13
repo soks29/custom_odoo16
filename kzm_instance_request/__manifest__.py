@@ -48,4 +48,6 @@
     # ],
     # 'application': 'False',
     'sequence': -100,
+    'installable': True,
+    'application': True,
 }

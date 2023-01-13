@@ -1,43 +1,212 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- Template for home and contactus -->
-    <template id="example1" name="Home">
+    <!-- Template for create instance -->
+    <template id="template_create_instance1" name="Create Instance">
         <t t-call="website.layout">
-            <div class="container">
-                <h1>Hello KZM</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            Name
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="instance_r" t-as="insta">
-                            <t t-sec="insta.name"/>
-                        </t>
-                    </tbody>
-                </table>
+            <div id="wrap">
+                <section class="s_title parallax s_parallax_is_fixed bg-black-50 pt24 pb24" data-vcss="001"
+                         data-snippet="s_title" data-scroll-background-ratio="1">
+                    <span class="s_parallax_bg oe_img_bg"
+                          style="background-image: url('/web/image/website.s_banner_default_image'); background-position: 70% 0;"/>
+                    <div class="o_we_bg_filter bg-black-50"/>
+                    <div class="container">
+                        <h1>Create instance</h1>
+                    </div>
+                </section>
+                <br/>
+                <div class="oe_structure" align="center">
+                    <div class="container">
+                        <form role="form" action="/create/web_instance" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="char"
+                                 data-name="Field">
+                                <div class="row s_col_no_resize s_col_no_bgcolor">
+                                    <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                           for="contact2">
+                                        <span class="s_website_form_label_content">URL</span>
+                                    </label>
+                                    <div class="col-sm">
+                                        <input id="contact2" type="tel" class="form-control s_website_form_input"
+                                               name="url"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="char"
+                                 data-name="Field">
+                                <div class="row s_col_no_resize s_col_no_bgcolor">
+                                    <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                           for="contact2">
+                                        <span class="s_website_form_label_content">CPU</span>
+                                    </label>
+                                    <div class="col-sm">
+                                        <input id="contact2" type="tel" class="form-control s_website_form_input"
+                                               name="cpu"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="char"
+                                 data-name="Field">
+                                <div class="row s_col_no_resize s_col_no_bgcolor">
+                                    <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                           for="contact2">
+                                        <span class="s_website_form_label_content">RAM</span>
+                                    </label>
+                                    <div class="col-sm">
+                                        <input id="contact2" type="tel" class="form-control s_website_form_input"
+                                               name="ram"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="char"
+                                 data-name="Field">
+                                <div class="row s_col_no_resize s_col_no_bgcolor">
+                                    <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                           for="contact2">
+                                        <span class="s_website_form_label_content">DISK</span>
+                                    </label>
+                                    <div class="col-sm">
+                                        <input id="contact2" type="tel" class="form-control s_website_form_input"
+                                               name="disk"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="char"
+                                 data-name="Field">
+                                <div class="row s_col_no_resize s_col_no_bgcolor">
+                                    <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                           for="contact2">
+                                        <span class="s_website_form_label_content">Limit Date</span>
+                                    </label>
+                                    <div class="col-sm">
+                                        <input id="contact2" type="tel" class="form-control s_website_form_input"
+                                               name="limit_date"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="char"
+                                 data-name="Field">
+                                <div class="row s_col_no_resize s_col_no_bgcolor">
+
+                                    <div class="col-sm">
+                                        <button type="submit" class="btn btn-primary pull-left">Create Instance</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </t>
     </template>
-    <!--
-            <template id="listing">
-              <ul>
-                <li t-foreach="objects" t-as="object">
-                  <a t-attf-href="#{ root }/objects/#{ object.id }">
-                    <t t-esc="object.display_name"/>
-                  </a>
-                </li>
-              </ul>
-            </template>
-            <template id="object">
-              <h1><t t-esc="object.display_name"/></h1>
-              <dl>
-                <t t-foreach="object._fields" t-as="field">
-                  <dt><t t-esc="field"/></dt>
-                  <dd><t t-esc="object[field]"/></dd>
+
+    <!-- Template for home and contactus -->
+    <template id="portal_instance_request" name="My Request">
+
+        <t t-call="website.layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <div class="ms-lg-4">
+                    <button class="btn btn-success btn-sm" name='new_opp' data-bs-toggle="modal"
+                            data-bs-target=".modal_new_opp" title="Add an opportunity" aria-label="Add an opportunity">
+                        Create Opportunity
+                    </button>
+                </div>
+
+            </t>
+
+            <div class="container" style="font-size:auto">
+
+                <t t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th class="text-end">Designation #</th>
+                            <th class="text-end">Address IP</th>
+                            <th class="text-end">CPU</th>
+                            <th class="text-end">Partner</th>
+                            <th class="text-end">Employees</th>
+                            <th class="text-end">Odoo Version</th>
+                            <th class="text-end">Perimeters</th>
+                            <th class="text-end">RAM</th>
+                            <th class="text-end">DISK</th>
+                            <th class="text-end">URL</th>
+                            <th class="text-end">Processing deadline</th>
+                            <th class="text-end">Processing date</th>
+                            <th class="text-end">Processing time</th>
+                            <th class="text-end">State</th>
+                        </tr>
+                    </thead>
+
+                    <t t-foreach="instances" t-as="x">
+                        <tr>
+                            <td>
+                                <span t-field="x.reference"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.adress_ip"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.cpu"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.partner_id"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.tl_id"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.odoo_id"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.perimeters_ids"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.ram"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.disk"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.url"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.limit_date"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.treat_date"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.treat_duration"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.state"/>
+                            </td>
+                        </tr>
+                    </t>
                 </t>
-              </dl>
-            </template>
-    -->
+            </div>
+        </t>
+    </template>
+
+    <record id="menu_instance_ask" model="website.menu">
+        <field name="name">My Request</field>
+        <field name="url">/instance/ask</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">50</field>
+    </record>
+
+    <record id="menu_instance_creation" model="website.menu">
+        <field name="name">Create Instance</field>
+        <field name="url">/instance_webform</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
 </odoo>

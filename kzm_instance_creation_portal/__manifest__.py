@@ -31,4 +31,7 @@
     # 'demo': [
     #     'demo/demo.xml',
     # ],
+    'sequence': -100,
+    'installable': True,
+    'application': True,
 }

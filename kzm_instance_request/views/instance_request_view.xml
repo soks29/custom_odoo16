@@ -33,6 +33,7 @@
                                 context="{'group_by': 'odoo_id'}"
                         />
                     </group>
+
                 </search>
             </field>
         </record>
@@ -70,7 +71,7 @@
             <field name="numbercall">-1</field>
             <field name="code">model.action_scheduled()</field>
             <field name="state">code</field>
-            <field name="active" eval="True"></field>
+            <field name="active" eval="True"/>
         </record>
         <!-- explicit list view definition -->
 
