@@ -2,7 +2,7 @@
 {
     'name': "Portal",
 
-    'summary': """s
+    'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
         subtitle on modules listing or apps.openerp.com""",
 
@@ -17,19 +17,19 @@
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['kzm_instance_request', 'website'],
+    'depends': ['base', 'kzm_instance_request', 'website', 'portal'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/templates.xml',
+        'views/views.xml',
     ],
     # only loaded in demonstration mode
     # 'demo': [
-    #     'demo/demo.xml',
+    #    'demo/demo.xml',
     # ],
     'sequence': -100,
     'installable': True,

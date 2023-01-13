@@ -171,59 +171,41 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click p-0" style="background-color: #85E1FF">
-                                <div class="col-3 p-2 text-center align-self-center">
-                                    <div style="margin:16px">
+                                <div style="margin:16px">
+                                    <strong style="color : black">DESIGNATION</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="name"/>
+                                        </span>
+                                    </li>
 
-                                        <strong style="color : black">Creator:</strong>
-                                        <li style="margin-left: 1cm">
-                                            <span style="color:red">
-                                                <field name="create_uid"/>
-                                            </span>
-                                        </li>
+                                    <strong style="color : black">Odoo Version</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="odoo_id"/>
+                                        </span>
+                                    </li>
 
-                                        <strong style="color : black">Designation:</strong>
-                                        <li style="margin-left: 1cm">
-                                            <span style="color:red">
-                                                <field name="name"/>
-                                            </span>
-                                        </li>
+                                    <strong style="color : black">Perimeters</strong>
+                                    <l style="margin-left: 1cm ; decoration:none">
+                                        <span style="color:red">
+                                            <field name="perimeters_ids"/>
+                                        </span>
+                                    </l>
 
-                                        <strong style="color : black">Partner:</strong>
-                                        <li style="margin-left: 1cm">
-                                            <span style="color:red">
-                                                <field name="partner_id"/>
-                                            </span>
-                                        </li>
+                                    <strong style="color : black">PROCESSING DEADLINE</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="limit_date"/>
+                                        </span>
+                                    </li>
 
-                                        <strong style="color : black">Partner:</strong>
-                                        <li style="margin-left: 1cm">
-                                            <span style="color:red">
-                                                <field name="partner_id"/>
-                                            </span>
-                                        </li>
-
-                                        <strong style="color : black">Number of perimeter:</strong>
-                                        <li style="margin-left: 1cm">
-                                            <span style="color:red">
-                                                <field name="nbre_perimeter"/>
-                                            </span>
-                                        </li>
-
-                                        <strong style="color : black">CPU:</strong>
-                                        <li style="margin-left: 1cm">
-                                            <span style="color:red">
-                                                <field name="cpu"/>
-                                            </span>
-                                        </li>
-
-                                        <strong style="color : black">State:</strong>
-                                        <li style="margin-left: 1cm">
-                                            <span style="color:red">
-                                                <field name="state"/>
-                                            </span>
-                                        </li>
-
-                                    </div>
+                                    <strong style="color : black">STATE</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="state"/>
+                                        </span>
+                                    </li>
                                 </div>
                             </div>
                         </t>
