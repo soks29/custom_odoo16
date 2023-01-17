@@ -1,6 +1,6 @@
 <odoo>
 
-    <!-- Menu and list instance -->
+    <!-- list instance -->
 
     <template id="list_instance_portal" name="My Instances">
         <t t-call="portal.portal_layout">
@@ -16,16 +16,16 @@
                         <th class="text-end">Employee</th>
                         <th class="text-center">Odoo Version</th>
                         <th class="text-end">Purchase order</th>
-                        <th class="text-end">State</th>
                         <th class="text-end">CPU</th>
                         <th class="text-end">RAM</th>
                         <th class="text-end">DISK</th>
+                        <th class="text-end">State</th>
                     </tr>
                 </thead>
                 <t t-foreach="instances" t-as="instance">
                     <tr>
                         <td class="text-end">
-                            <a t-attf-href="/form_create_instance">
+                            <a t-attf-href="/form_create_instance/#{instance.id}">
                                 <span t-field="instance.reference"/>
                             </a>
                         </td>
@@ -41,9 +41,7 @@
                         <td class="text-end">
                             <span t-field="instance.sale_id.name"/>
                         </td>
-                        <td class="text-end">
-                            <span t-field="instance.state"/>
-                        </td>
+
                         <td class="text-end">
                             <span t-field="instance.cpu"/>
                         </td>
@@ -52,6 +50,9 @@
                         </td>
                         <td class="text-end">
                             <span t-field="instance.disk"/>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="instance.state"/>
                         </td>
                     </tr>
                 </t>

@@ -371,10 +371,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:kzm_instance_request.selection__kzm_instance_request__state__brouillon
 #: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_request_form_view
 msgid "Draft copy"
-msgstr "Bruoillon"
+msgstr "Brouillon"
 
 #. module: kzm_instance_request
-#: model:ir.model,name:kzm_instance_request.model_hr_employee
+#: model:ir.model,name:kzm_ins
+tance_request.model_hr_employee
 #: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__tl_user_id
 msgid "Employee"
 msgstr "Employé"
@@ -388,7 +389,7 @@ msgstr ""
 #. module: kzm_instance_request
 #: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Abonnees"
 
 #. module: kzm_instance_request
 #: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_partner_ids
@@ -854,7 +855,7 @@ msgstr "Historique des communications du site Web"
 #: code:addons/kzm_instance_request/models/intance_request.py:0
 #, python-format
 msgid "You can only delete instance requests in Draft status!"
-msgstr "Vous ne pouvez supprimer les demandes d'instance qu'au statut Brouillon !"
+msgstr "Vous ne pouvez supprimer les demandes d'instance qu'au statut Brouillon!"
 
 #. module: kzm_instance_request
 #. odoo-python
