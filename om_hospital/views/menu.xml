@@ -1,32 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
+        <menuitem name="Hospital" web_icon="om_hospital,static/description/icon.png" id="menu_hospital_root">
+            <menuitem name="Patient Details" id="menu_patient_master">
+                <menuitem name="Patients" id="menu_patient" action="action_hospital_patient"/>
+                <menuitem name="Female Patients" id="female_menu_patient" action="action_hospital_female_patient"/>
+            </menuitem>
 
-        <menuitem name="Hospital"
-                  web_icon="om_hospital,static/description/icon.png"
-                  id="menu_hospital_root"
-                  sequence="0"/>
+            <menuitem name="Appointments" id="menu_appointment_master" >
+                <menuitem name="Cancellation" id="menu_cancel_appointment" action="action_cancel_appointment"/>
+                <menuitem name="Appointments" id="menu_appointment" action="action_hospital_appointment"/>
+            </menuitem>
 
-        <menuitem name="Patient Details"
-                  parent="menu_hospital_root"
-                  id="menu_patient_master"
-                  sequence="0"/>
-
-        <menuitem name="Appointments"
-                  id="menu_appointment_master"
-                  parent="menu_hospital_root"
-                  sequence="20"/>
-
-        <menuitem name="Configurations"
-                  id="menu_configuration"
-                  parent="menu_hospital_root"
-                  sequence="100"/>
-
-        <menuitem name="Cancellation"
-                  id="menu_cancel_appointment"
-                  parent="menu_appointment_master"
-                  action="action_cancel_appointment"
-                  sequence="20"/>
-
+            <menuitem name="Configurations" id="menu_configuration" >
+                <menuitem name="Tags" id="menu_patient_tag" action="action_patient_tag"/>
+            </menuitem>
+        </menuitem>
     </data>
 </odoo>

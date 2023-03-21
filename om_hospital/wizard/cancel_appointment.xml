@@ -13,6 +13,7 @@
                     <group>
                         <group>
                             <field name="appointment_id"/>
+                            <field name="raison"/>
                         </group>
                         <group>
 
@@ -27,7 +28,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_cancel_appointment">
-            <field name="name">Cancel Appointment Tags</field>
+            <field name="name">Cancel Appointment</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cancel.appointment.wizard</field>
             <field name="view_mode">form</field>

@@ -91,12 +91,5 @@
                 </p>
             </field>
         </record>
-
-        <menuitem name="Patients"
-                  id="menu_patient"
-                  action="action_hospital_patient"
-                  parent="menu_patient_master"
-                  sequence="0"/>
-
     </data>
 </odoo>

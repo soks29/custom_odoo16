@@ -11,3 +11,5 @@ class EstatePropertyType(models.Model):
     name = fields.Char(string="Name", required=True)
     _sql_constraints = [('fleet_state_name_type_unique', 'unique(name)', 'A property type name must be unique')]
     property_ids = fields.One2many("estate.property", "property_type_id", string="Properties")
+    sequence = fields.Integer('Sequence', default=1, help="Used to order stages. lower is better.")
+    

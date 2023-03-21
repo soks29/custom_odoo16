@@ -2,7 +2,8 @@
 
 from datetime import date, timedelta
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.tools import float_is_zero, float_compare
+from odoo.exceptions import ValidationError, UserError
 
 
 class EstateProperty(models.Model):
@@ -22,7 +23,6 @@ class EstateProperty(models.Model):
     garage = fields.Boolean(string="Garage")
     active = fields.Boolean(string="Active", default=True)
     garden = fields.Boolean(string="Garden")
-    sequence = fields.Integer('Sequence', default=1, help="Used to order stages. Lower is better.")
 
     garden_area = fields.Integer(string="Garden Area(sqm)")
 
@@ -52,6 +52,12 @@ class EstateProperty(models.Model):
         ('check_selling_price', 'CHECK(selling_price >= 0)', 'The Selling price must be positive'),
     ]
 
+    @api.constrains('selling_price')
+    def _check_selling_price(self):
+        for record in self:
+            if not float_is_zero(record.selling_price, precision_digits=2) and float_compare(record.selling_price, record.expected_price * 0.9, precision_digits=2) == -1:
+                raise ValidationError(_("Selling price cannot be less than 90% of the expected price."))
+
     # @api.constrains('selling_price')
     # def _check_selling_price(self):
     #     for rec in self:
@@ -73,6 +79,7 @@ class EstateProperty(models.Model):
                 raise UserError(_("Cancelled property cannot be sold"))
             else:
                 rec.ensure_one()
+                rec.selling_price = rec.best_price
                 rec.state = 'sold'
         return True
 

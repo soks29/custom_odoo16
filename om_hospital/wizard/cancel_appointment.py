@@ -3,9 +3,12 @@
 from odoo import models, fields, api
 
 
-class CancelAppointment(models.TransientModel):
+class CancelAppointmentWizard(models.TransientModel):
     _name = 'cancel.appointment.wizard'
     _description = 'Cancel Appointment Wizard'
 
     appointment_id = fields.Many2one('hospital.appointment', string="Appointment")
+    raison = fields.Text(string="Raison")
 
+    def action_cancel(self):
+        pass

@@ -35,9 +35,7 @@
             <field name="name">hospital.appointment.tree</field>
             <field name="model">hospital.appointment</field>
             <field name="arch" type="xml">
-                <tree decoration-success="state == 'done'"
-                      decoration-danger="state == 'cancel'"
-                      sample="1" multi_edit="1">
+                <tree>
                     <field name="patient_id"/>
                     <field name="ref" optional="show"/>
                     <field name="doctor_id" widget="many2one_avatar_user"/>
@@ -79,6 +77,13 @@
                                 type="object"
                                 states="in_consultation"
                                 data-hotkey="v"/>
+
+<!--                        <button name="%(om_hospital.action_cancel_appointment)d"-->
+<!--                                states="draft,in_consultation"-->
+<!--                                class="btn-danger"-->
+<!--                                string="Cancel"-->
+<!--                                type="action"-->
+<!--                                data-hotkey="z"/>-->
 
                         <button name="action_cancel"
                                 states="draft,in_consultation"
@@ -139,7 +144,7 @@
                             <page string="Prescription" name="prescription">
                                 <field name="prescription"
                                        placeholder="Enter your prescription"
-                                       options="{'collaborative': true, 'resizable': true, 'codeview': true}"/>
+                                       options="{'collaborative':true, 'resizable':true, 'codeview':true}"/>
                             </page>
                             <page string="Pharmacy" name="pharmacy">
                                 <field name="pharmacy_line_ids">
@@ -193,12 +198,6 @@
                 </p>
             </field>
         </record>
-
-        <menuitem name="Appointments"
-                  id="menu_appointment"
-                  action="action_hospital_appointment"
-                  parent="menu_appointment_master"
-                  sequence="0"/>
 
     </data>
 </odoo>
